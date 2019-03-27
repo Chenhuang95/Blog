@@ -1,0 +1,50 @@
+buildscript {
+	ext {
+		springBootVersion = '2.2.0.BUILD-SNAPSHOT'
+	}
+	//自定义thymeleaf和Thymeleaf Layout Dialect的版本
+	ext['thymeleaf.version'] = '3.0.2.RELEASE'
+	ext['thymeleaf-layout-dialect.version'] = '2.1.1'
+	
+	//自定义hibernate版本
+	ext['hibernate.version'] = '5.2.8.Final'
+	
+	repositories {
+	 maven { url "http://maven.aliyun.com/nexus/content/groups/public/" }
+		//mavenCentral()
+	}
+	dependencies {
+		classpath("org.springframework.boot:spring-boot-gradle-plugin:${springBootVersion}")
+	}
+}
+
+
+apply plugin: 'java'
+apply plugin: 'eclipse'
+apply plugin: 'org.springframework.boot'
+apply plugin: 'io.spring.dependency-management'
+
+
+group = 'com.example'
+version = '0.0.1-SNAPSHOT'
+sourceCompatibility = '1.8'
+
+repositories {
+ maven { url "http://maven.aliyun.com/nexus/content/groups/public/" }
+	//mavenCentral()
+}
+
+dependencies {
+	implementation('org.springframework.boot:spring-boot-starter-web')
+	//添加thymeleaf依赖
+	compile('org.springframework.boot:spring-boot-starter-thymeleaf')
+	//添加jpa依赖
+	compile('org.springframework.boot:spring-boot-starter-data-jpa')
+	//添加mysql连接驱动的依赖
+	compile('mysql:mysql-connector-java:6.0.5')
+	//添加h2依赖
+	compile('com.h2database:h2:1.4.193')
+	
+	testImplementation('org.springframework.boot:spring-boot-starter-test')
+	
+}
